@@ -12,7 +12,7 @@
 ;; 1.  WRITE SQUARE:  given n, returns n^2.  Hint:  use *
 (define (square x)
   (* x x))
-  
+
 (display (square 2)) (newline)  ;; -> 4
 
 ;; 2.  WRITE is-right-triangle:  given three numbers, returns true iff the third
@@ -20,11 +20,11 @@
 ;;     Hint:  use = to compare numeric values
 
 (define (is-right-triangle x y z)
-  
+
   (if (= (+ (square x) (square y)) (square z))
        #t
        #f))
-  
+
 (display (is-right-triangle 3 4 5)) (newline)  ;; -> #t
 (display (is-right-triangle 4 5 6)) (newline)  ;; -> #f
 
@@ -54,29 +54,36 @@
 
 ;; 5.  WRITE a procedure that takes a list of numbers and returns the sum of those numbers
 ;;     Hint:  first, rest, cons
+;(define (sum lst)
+;  (cond [(null? (rest lst)) (first lst)]
+;        [else (+ (first lst) (sum (rest lst)))]))
+
 (define (sum lst)
-  (cond [(null? (rest lst)) (first lst)]
-        [else (+ (first lst) (sum (rest lst)))]))
+  (foldl + 0 lst))
 
 (display (sum '(1 2 3 4))) (newline) ;; -> 10
 (display (sum '(1 20 300))) (newline) ;; -> 321
 
 ;; 6.  WRITE a procedure that takes a list of numbers and returns the largest one.
 ;;     While there are solutions using scheme's built-in max, we were actually hoping you'd do something else...
-(define (larger x y)
-  (if (> x y)
-      x
-      y))
+;(define (larger x y)
+;  (if (> x y)
+;      x
+;      y))
+;
+;(define (my-max lst)
+;  (if (null? (rest lst))
+;      (first lst)
+;      (my-max
+;       (cons (larger (first lst) (first (rest lst)))
+;                    (rest (rest lst))))
+;      ))
 
 (define (my-max lst)
-  (if (null? (rest lst))
-      (first lst)
-      (my-max
-       (cons (larger (first lst) (first (rest lst)))
-                    (rest (rest lst))))
-      ))
-
-
+  (foldl (lambda (x y)
+           (if (> x y)
+               x
+               y)) 0 lst))
 
 (display (my-max '(1 10 2 20 3))) (newline) ;; -> 20
 (display (my-max '(1 3 31 20 3))) (newline) ;; -> 31
