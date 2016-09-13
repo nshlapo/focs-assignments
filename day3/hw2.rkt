@@ -25,27 +25,56 @@
     )
 )
 
+;(define (interpret op args)
+;    (cond [(eq? op 'ADD)    (+ (first args) (second args))]
+;          [(eq? op 'SUB)    (- (first args) (second args))]
+;          [(eq? op 'MUL)    (* (first args) (second args))]
+;          [(eq? op 'DIV)    (/ (first args) (second args))]
+;          [(eq? op 'GT)     (> (first args) (second args))]
+;          [(eq? op 'LT)     (< (first args) (second args))]
+;          [(eq? op 'GE)     (<= (first args) (second args))]
+;          [(eq? op 'LE)     (>= (first args) (second args))]
+;          [(eq? op 'EQ)     (not (equal? (first args) (second args)))]
+;          [(eq? op 'NEQ)    (not (equal? (first args) (second args)))]
+;          [(eq? op 'AND)    (and (first args) (second args))]
+;          [(eq? op 'OR)     (or (first args) (second args))]
+;          [(eq? op 'NOT)    (not (first args))]
+;          [(eq? op 'IPH)    (if (calculate (first args))
+;                                (calculate (second args))
+;                                (calculate (third args)))]
+;    )
+;)
+
+; Rewrite this using an argument for interpret that is a list, so i can include NOT and IPH
+
+;(define (calculate x)
+;    (interpret (first x) (map calculate (rest x))
+;      ; Map this check function onto the rest of x
+;        (if (or (number? (second x)) (boolean? (second x)))
+;            (second x)
+;            (calculate (second x)))
+;    )
+;)
+
 (define (calculate x)
     (cond
         [(eq? 'NOT (first x))
-            (if (boolean? (first (rest x)))
-                (not (first (rest x)))
-                (not (calculate (first (rest x))))
+            (if (boolean? (second x))
+                (not (second x))
+                (not (calculate (second x)))
             )]
         [(eq? 'IPH (first x))
             (cond
-                [(eq? #t (calculate (first (rest x))))
-                    (calculate (first (rest (rest x))))]
-                [(eq? #f (calculate(first (rest x))))
-                    (calculate (first (rest (rest (rest x)))))])]
+                [(eq? #t (calculate (second x)))       (calculate (third x))]
+                [(eq? #f (calculate (second x)))       (calculate (fourth x))])]
         [else
             (interpret (first x)
-                (if (or (number? (first (rest x))) (boolean? (first (rest x))))
-                    (first (rest x))
-                    (calculate (first (rest x))))
-                (if (or (number? (first (rest (rest x)))) (boolean? (first (rest (rest x)))))
-                    (first (rest (rest x)))
-                    (calculate (first (rest (rest x)))))
+                (if (or (number? (second x)) (boolean? (second x)))
+                    (second x)
+                    (calculate (second x)))
+                (if (or (number? (third x)) (boolean? (third x)))
+                    (third x)
+                    (calculate (third x)))
             )]
     )
 )

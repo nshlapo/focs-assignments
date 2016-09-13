@@ -14,9 +14,22 @@
 ;(display (tree-add1 '(1 (2 3) 3 4))) (newline) ;; -> (2 (3 4 5))
 
 (define (tree-max-depth tree)
-  (list? (cdr tree)))
+  (max
+    (map
+      (lambda (ele)
+        (cond [(null? ele)    0]
+              [(number? ele)  1]
+              [(list? ele)    (+ 1 (tree-max-depth ele))]
+        )
+      )
+    tree)
+  )
+)
 
-;(display (tree-max-depth '(1 2))) (newline) ;; -> (2 3 4 5)
+
+(display (tree-max-depth '(1 2))) (newline) ;; -> (2 3 4 5)
+(display (tree-max-depth '(1 2 (3 4)))) (newline) ;; -> (2 3 4 5)
+
 
 (define (tree-max-width tree)
     (foldl + 0
@@ -30,6 +43,3 @@
 ;(display (tree-max-width '(3 (1 (4 1))))) (newline) ;; -> 2
 ;(display (tree-max-width '(3 1 (4 1)))) (newline) ;; -> 3
 ;(display (tree-max-width '(3 (1 4 1)))) (newline) ;; -> 2
-
-(define (flatten tree)
-  body)
