@@ -4,7 +4,7 @@
 ;;;
 ;;; Check one:
 ;;; ( ) I completed this assignment without assistance or external resources.
-;;; ( ) I completed this assignment with assistance from ___
+;;; (x) I completed this assignment with assistance from talking to a few people
 ;;;     and/or using these external resources: ___ I redid my calculator function
 ;;;     after talking with Byron a bit, so that it wouldn't be as messy
 

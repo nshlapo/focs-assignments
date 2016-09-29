@@ -1,3 +1,7 @@
+Nur Shlapboersky
+No outside help
+
+
 1. FSA to Regular Expression
     a  `/01(11)*0/`
 

@@ -1,12 +1,15 @@
 # FOCS Day 7 Homework
 
+###Nur Shlapobersky
+###No outside help
+
 ## Part 1: Finite Automata
 
 You may use any of the following to answer these questions:
 
  - JFLAP
  - The DFA and NFA machines introduced in _Understanding Computation_ chapter 3 (in Ruby or translated into a language of your choice)
- - Your own home brew code (but please give us a heads up if you plan to do this, so we are prepared) 
+ - Your own home brew code (but please give us a heads up if you plan to do this, so we are prepared)
  - Pencil and paper (in which case you should also use a scanner, please)
 
 Upload the results to GitHub.
@@ -29,7 +32,7 @@ The automata we have considered so far accept only strings over the alphabet {0,
 
 Assume that you have a deterministic finite automaton A that recognizes a language L.  Show how to construct an automaton that recognizes L_reverse, that is, s is a string in L_reverse iff s_reverse -- s spelled backwards -- is in L.
 
-Hint for prover types:  You may assume that A has a set of states Q = {q0, ... qn} and operates over the alphabet {0,1}; that A's start state is q0; that F, a subset of Q, is the set of A's accepting states; and that you have a transition table delta with rules of the form qi, x --> qj for x in {0,1}. 
+Hint for prover types:  You may assume that A has a set of states Q = {q0, ... qn} and operates over the alphabet {0,1}; that A's start state is q0; that F, a subset of Q, is the set of A's accepting states; and that you have a transition table delta with rules of the form qi, x --> qj for x in {0,1}.
 
 Hint for coder types:  You may assume that A was created by calling (your favorite language's equivalent of) DFA.new(q, qlist, DFARulebook.new(RuleList)), where q is an integer, qlist is a list of integers, and RuleList is a list of FARules.  Write a translation program that will produce an automaton that recognizes the reversed language.
 

@@ -1,6 +1,6 @@
 #lang racket
 
-;;; Student Name: Frankly Olin [change to your name]
+;;; Student Name: Nur Shlapobersky
 ;;;
 ;;; Check one:
 ;;; [ ] I completed this assignment without assistance or external resources.
